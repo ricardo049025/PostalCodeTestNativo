@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import SearchBox from '../Search/SearchBox';
+import SearchBox from '../Search/SearchBox';    
 import './home.css';
 class Home extends Component{
 
@@ -13,7 +13,7 @@ class Home extends Component{
 
     render(){
         
-        if(this.state.zipCodes.length == 0) return (<div><p> waiting ..</p></div>);
+        if(this.state.zipCodes.length === 0) return (<div><p> waiting ..</p></div>);
 
         return (
             <div className="">
@@ -33,15 +33,12 @@ class Home extends Component{
         )
     }
 
-     async componentDidMount(){
+      async componentDidMount(){
         const postalCodeUrl = `${window.apiHost}/PostalCode/getCodigos`;
         const axiosResponse = await axios.get(postalCodeUrl);
         this.setState({
             zipCodes: axiosResponse.data
         });
-
-        //  var element = document.getElementsByClassName('autocomplete');
-        //  var instance = window.M.Autocomplete.init(element,this.state.zipCodes);
     }    
 }
 

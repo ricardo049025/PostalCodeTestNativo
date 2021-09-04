@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
 import './search.css';
+import {Typeahead} from 'react-bootstrap-typeahead'
 class SearchBox extends Component{
     
     constructor(){
         super();
+        this.state={
+            selected:null
+        }
     }
 
     render(){
-        
+
         return(
             
             <div className="container-fluid">
@@ -20,11 +24,17 @@ class SearchBox extends Component{
                                         <div className="row">
                                             <h5>Places in Nicaragua</h5>
                                             <form className="search-box-form">
-                                                <div className="col m12">                                                    
-                                                    <div className="input-field" id="where">
+                                                <div className="col m12">                       
                                                     <div>
-                                                        <input type="text" id="autocomplete-input browser-default" className="autocomplete" />                                                        
-                                                    </div>
+                                                        <Typeahead 
+                                                        id="basic-typeahead-single"
+                                                        onChange={(option) => {this.setState({selected: option})}}
+                                                        selected={this.state.selected}
+                                                        options={this.props.zipCodes} 
+                                                        key="id"
+                                                        labelKey="zipCode"
+                                                        placeholder="Select a zip code"
+                                                        />   
 
                                                     </div>
                                                 </div>
@@ -45,11 +55,7 @@ class SearchBox extends Component{
 
         )}
 
-    componentDidMount()
-    {
-        var element = document.getElementsByClassName('autocomplete');
-        var instance = window.M.Autocomplete.init(element,{"apple":"https://placehold.it/250x250"});        
-    }
+  
 }
 
 export default SearchBox;
