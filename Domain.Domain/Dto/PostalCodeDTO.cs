@@ -11,7 +11,8 @@ namespace Domain.Domain.Dto
         public int id { get; set; }
         public string departament { set; get; }
         public string municipality { set; get; }
-        public string zipCode { set; get; }
+        public int zipCode { set; get; }
+        public string zipCodeDescription { set; get; }
         public string neighborhood { set; get; }
     }
 }

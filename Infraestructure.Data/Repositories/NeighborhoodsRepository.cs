@@ -28,8 +28,9 @@ namespace Infraestructure.Data.Repositories
                         {
                             departament = s.Municipality.Departament.name,
                             municipality = s.Municipality.name,
-                            zipCode = s.zipCode.ToString(),
-                            neighborhood = s.name,
+                            zipCodeDescription =  $"{s.zipCode.ToString()}-{(s.name == "Master Code" ? s.Municipality.name : s.name)}",
+                            zipCode = s.zipCode,
+                            neighborhood = (s.name == "Master Code" ? s.Municipality.name : s.name),
                             id = s.ID
                         }).ToList();
 
